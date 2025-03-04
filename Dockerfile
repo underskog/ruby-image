@@ -1,4 +1,5 @@
-FROM ruby:2.6-slim
+ARG RUBY_VERSION=2.6
+FROM ruby:${RUBY_VERSION}-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC \

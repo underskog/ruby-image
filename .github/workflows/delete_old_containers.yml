@@ -18,6 +18,5 @@ jobs:
       - name: ghcr cleanup action
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          dry-run: true
           package: ruby-pg
           keep-n-untagged: 3

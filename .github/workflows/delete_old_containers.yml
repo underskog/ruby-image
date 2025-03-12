@@ -16,9 +16,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ghcr cleanup action
-        runs-on: ubuntu-latest
-        steps:
-          - uses: dataaxiom/ghcr-cleanup-action@v1
-            with:
-              dry-run: true
-              keep-n-untagged: 3
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          dry-run: true
+          keep-n-untagged: 3

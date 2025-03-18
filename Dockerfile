@@ -2,6 +2,7 @@ ARG RUBY_VERSION=2.6
 FROM ruby:${RUBY_VERSION}-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG POSTGRESQL_VERSION=15
 ENV TZ=Etc/UTC \
     LANG=C.UTF-8
 
@@ -15,4 +16,4 @@ RUN apt-get update --yes && \
 RUN sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
     curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     apt-get update --yes && \
-    apt-get install --no-install-recommends --yes postgresql-15
+    apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION}

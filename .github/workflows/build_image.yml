@@ -15,6 +15,13 @@ jobs:
   build_base:
     name: "Build Base Image"
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - ruby_version: 2.6
+            postgresql_version: 15
+          - ruby_version: 2.6
+            postgresql_version: 16
     outputs:
       image_tag: ${{ steps.meta.outputs.tags }}
       image_sha: ${{ steps.docker_build.outputs.digest }}
@@ -45,7 +52,8 @@ jobs:
           images: |
             ghcr.io/${{ github.repository_owner }}/ruby-pg
           tags: |
-            type=raw,value=${{ env.RUBY_VERSION }}
+            type=raw,value=${{ matrix.ruby_version }}-pg${{ matrix.postgresql_version }}
+            ${{ matrix.postgresql_version == '15' && 'type=raw,value=ruby:2.6' || '' }}
 
       - name: Build and push Docker base image
         id: docker_build
@@ -57,7 +65,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            RUBY_VERSION=${{ env.RUBY_VERSION }}
+            RUBY_VERSION=${{ matrix.ruby_version }}
+            POSTGRESQL_VERSION=${{ matrix.postgresql_version }}
         env:
           POSTGRES_HOST: postgres
           POSTGRES_PORT: 5432

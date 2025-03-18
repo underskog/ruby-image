@@ -13,7 +13,8 @@ RUN apt-get update --yes && \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs imagemagick apt-transport-https ca-certificates \
       webp gnupg2
 
-RUN sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
-    curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc && \
+    echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     apt-get update --yes && \
-    apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION}
+    apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION} && \
+    rm -rf /var/lib/apt/lists/*

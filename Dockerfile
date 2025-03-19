@@ -16,5 +16,4 @@ RUN apt-get update --yes && \
 RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc && \
     echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     apt-get update --yes && \
-    apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION} && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION}

@@ -11,7 +11,8 @@ RUN apt-get update --yes && \
     apt-get install --no-install-recommends --yes \
       software-properties-common gcc git-core make curl libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
-      webp gnupg2 libheif-dev pkg-config
+      webp gnupg2 libheif-dev libjpeg-dev libpng-dev libwebp-dev libtiff-dev \
+      libjxl-dev libopenjp2-7-dev liblzma-dev libzstd-dev libbz2-dev liblcms2-dev pkg-config
 
 RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc && \
     echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \

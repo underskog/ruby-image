@@ -8,8 +8,8 @@ on:
     - cron: '0 3 * * *' # Run every day at 3:00 AM UTC
   workflow_dispatch: # Manual trigger for debugging/testing
 
-env:
-  RUBY_VERSION: "2.6"
+#env:
+#  RUBY_VERSION: "2.6"
 
 jobs:
   build_base:
@@ -20,8 +20,16 @@ jobs:
         include:
           - ruby_version: 2.6
             postgresql_version: 15
+            platform: linux/amd64
+          - ruby_version: 2.6
+            postgresql_version: 15
+            platform: linux/arm64/v8
           - ruby_version: 2.6
             postgresql_version: 16
+            platform: linux/amd64
+          - ruby_version: 2.6
+            postgresql_version: 16
+            platform: linux/arm64/v8
     outputs:
       image_tag: ${{ steps.meta.outputs.tags }}
       image_sha: ${{ steps.docker_build.outputs.digest }}
@@ -60,7 +68,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: ${{ matrix.platform }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

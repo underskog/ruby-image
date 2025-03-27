@@ -16,9 +16,9 @@ jobs:
       matrix:
         include:
           - ruby_version: 2.6
-            postgresql_version: 15
-          - ruby_version: 2.6
             postgresql_version: 16
+          - ruby_version: 2.6
+            postgresql_version: 17
     outputs:
       image_tag: ${{ steps.meta.outputs.tags }}
       image_sha: ${{ steps.docker_build.outputs.digest }}
@@ -50,7 +50,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/ruby-pg
           tags: |
             type=raw,value=${{ matrix.ruby_version }}-pg${{ matrix.postgresql_version }}
-            ${{ matrix.postgresql_version == '15' && format('type=raw,value={0}', matrix.ruby_version) || '' }}
+            ${{ matrix.postgresql_version == '16' && format('type=raw,value={0}', matrix.ruby_version) || '' }}
 
       - name: Build and push Docker base image
         id: docker_build

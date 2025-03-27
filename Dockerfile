@@ -11,9 +11,12 @@ RUN apt-get update --yes && \
     apt-get install --no-install-recommends --yes \
       software-properties-common gcc git-core make curl libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
-      webp gnupg2 imagemagick
+      webp gnupg2 imagemagick libjemalloc-dev
 
 RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc && \
     echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     apt-get update --yes && \
     apt-get install --no-install-recommends --yes postgresql-${POSTGRESQL_VERSION}
+
+# Set LD_PRELOAD so Ruby uses jemalloc at runtime
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2

@@ -1,6 +1,6 @@
 What is this?
 --
-Ruby 2.6 docker image with PostgresQL.
+Ruby 2.6 docker image with PostgreSQL.
 
 Rebuilt daily.
 

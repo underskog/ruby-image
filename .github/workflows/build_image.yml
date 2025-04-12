@@ -34,8 +34,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      # Reset QEMU using explicit docker run commands instead of the setup-qemu-action
+      # in order to prevent segmentation fault while setting libc in arm64.
+      # Reference: https://github.com/docker/buildx/issues/1170
+      - name: Reset QEMU
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes -c yes
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

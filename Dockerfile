@@ -11,7 +11,7 @@ RUN apt-get update --yes && \
     apt-get install --no-install-recommends --yes \
       software-properties-common gcc git-core make curl libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
-      webp gnupg imagemagick
+      webp gnupg imagemagick libgeos-dev
 
 ARG POSTGRESQL_VERSION=missing-build-arg
 RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /etc/apt/trusted.gpg.d/postgresql.asc && \

@@ -9,7 +9,7 @@ ENV TZ=Etc/UTC \
 RUN apt-get update --yes && \
     apt-get upgrade --yes && \
     apt-get install --no-install-recommends --yes \
-      packagekit lsb-release gcc git-core make curl libcurl4-openssl-dev gpg-agent \
+      packagekit lsb-release iso-codes gcc git-core make curl libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
       webp gnupg imagemagick libgeos-dev
 

@@ -7,5 +7,5 @@ Rebuilt daily.
 Usage
 --
 ```
-FROM ghcr.io/underskog/ruby-pg:2.6-pg16
+FROM ghcr.io/underskog/ruby-pg:2.6-pg17
 ```

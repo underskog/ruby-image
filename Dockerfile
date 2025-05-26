@@ -10,9 +10,10 @@ RUN ruby -ropen-uri -e 'File.write("/etc/apt/trusted.gpg.d/postgresql.asc", URI.
     echo "deb https://apt.postgresql.org/pub/repos/apt $(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 ARG POSTGRESQL_VERSION=missing-build-arg
-RUN apt-get update --yes && \
+RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
+    apt-get update --yes && \
     apt-get upgrade --yes && \
-    apt-get install --no-install-recommends --yes -o APT::Acquire::Retries=10 \
+    apt-get install --no-install-recommends --yes \
       packagekit iso-codes gcc git-core make libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
       webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION}

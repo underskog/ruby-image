@@ -12,7 +12,7 @@ RUN ruby -ropen-uri -e 'File.write("/etc/apt/trusted.gpg.d/postgresql.asc", URI.
 ARG POSTGRESQL_VERSION=missing-build-arg
 RUN apt-get update --yes && \
     apt-get upgrade --yes && \
-    apt-get install --no-install-recommends --yes \
+    apt-get install --no-install-recommends --yes -o APT::Acquire::Retries=10 \
       packagekit iso-codes gcc git-core make libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
       webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION}

@@ -17,3 +17,5 @@ RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
       packagekit iso-codes gcc git-core make libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
       webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION}
+
+RUN gem update --system 3.4.22

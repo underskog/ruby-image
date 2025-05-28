@@ -17,6 +17,8 @@ jobs:
             postgresql_version: 17
           - ruby_version: 2.6
             postgresql_version: 17
+          - ruby_version: 3.0
+            postgresql_version: 17
     outputs:
       image_tag: ${{ steps.meta.outputs.tags }}
       image_sha: ${{ steps.docker_build.outputs.digest }}

@@ -18,4 +18,4 @@ RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
       webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION}
 
-#RUN gem update --system 3.4.22
+RUN gem update --system 3.4.22

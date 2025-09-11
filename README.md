@@ -1,11 +1,11 @@
 What is this?
 --
-Ruby 2.6/2.7/3.0/3.1 docker image with PostgreSQL.
+Ruby 3.1 docker image with PostgreSQL.
 
 Rebuilt weekly.
 
 Usage
 --
 ```
-FROM ghcr.io/underskog/ruby-pg:2.7-pg17
+FROM ghcr.io/underskog/ruby-pg:3.1-pg17
 ```

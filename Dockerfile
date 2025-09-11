@@ -5,7 +5,7 @@ ENV TZ=Etc/UTC \
     LANG=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
-# With super fun replacements for `curl` and `lsb_release`:
+# Using alternatives to `curl` and `lsb_release`:
 RUN ruby -ropen-uri -e 'File.write("/etc/apt/trusted.gpg.d/postgresql.asc", URI.open("https://www.postgresql.org/media/keys/ACCC4CF8.asc").read)' && \
     echo "deb https://apt.postgresql.org/pub/repos/apt $(sed -n 's/^VERSION_CODENAME=//p' /etc/os-release)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 

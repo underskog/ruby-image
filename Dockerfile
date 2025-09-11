@@ -12,10 +12,11 @@ RUN ruby -ropen-uri -e 'File.write("/etc/apt/trusted.gpg.d/postgresql.asc", URI.
 ARG POSTGRESQL_VERSION=missing-build-arg
 RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
     apt-get update --yes && \
-    apt-get upgrade --yes && \
+    apt-get full-upgrade --yes && \
     apt-get install --no-install-recommends --yes \
       packagekit iso-codes gcc git-core make libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
-      webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION}
+      webp gnupg imagemagick libgeos-dev postgresql-${POSTGRESQL_VERSION} && \
+    apt-get autoremove --purge
 
 RUN gem update --system 3.4.22

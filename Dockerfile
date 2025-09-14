@@ -12,7 +12,7 @@ RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries && \
     apt-get install --no-install-recommends --yes \
       curl rustc packagekit iso-codes gcc git-core make libcurl4-openssl-dev gpg-agent \
       libxml2-dev zlib1g-dev g++ libpq-dev nodejs apt-transport-https ca-certificates \
-      webp gnupg imagemagick libgeos-dev cargo xz-utils libjemalloc-dev postgresql-${POSTGRESQL_VERSION} && \
+      webp gnupg imagemagick libgeos-dev cargo xz-utils libjemalloc2 postgresql-${POSTGRESQL_VERSION} && \
     apt-get autoremove --purge --yes
 
 RUN gem update --system 3.4.22

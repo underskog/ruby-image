@@ -13,11 +13,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby_version: "3.2"
-            postgresql_version: 17
           - ruby_version: "3.3"
             postgresql_version: 17
-          - ruby_version: "3.2"
+          - ruby_version: "3.3"
             postgresql_version: 18
     outputs:
       image_tag: ${{ steps.meta.outputs.tags }}

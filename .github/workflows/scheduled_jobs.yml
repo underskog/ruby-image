@@ -59,7 +59,7 @@ jobs:
           images: |
             ghcr.io/${{ github.repository_owner }}/ruby-pg
           tags: |
-            type=raw,value=${{ matrix.ruby_version }}-pg${{ matrix.postgresql_version }}${{ matrix.variant == "alpine" ? "-alpine" : "" }}
+            type=raw,value=${{ matrix.ruby_version }}-pg${{ matrix.postgresql_version }}${{ matrix.variant == 'alpine' && '-alpine' || '' }}
 
       - name: Build and push Docker base image
         id: docker_build

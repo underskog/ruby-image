@@ -70,7 +70,7 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }} # Only push on main branch
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: ${{ matrix.variant == "alpine" ? "Dockerfile.alpine" : "Dockerfile" }}
+          file: ${{ matrix.variant == 'alpine' ? 'Dockerfile.alpine' : 'Dockerfile' }}
           build-args: |
             RUBY_VERSION=${{ matrix.ruby_version }}
             POSTGRESQL_VERSION=${{ matrix.postgresql_version }}
